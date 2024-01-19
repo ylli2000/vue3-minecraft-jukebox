@@ -2,7 +2,7 @@
 
 https://console.firebase.google.com/u/0/project/music-app-e50df/hosting/sites/music-app-e50df
 
-### Domains
+### • Domains
 
 https://music-app-e50df.web.app
 
@@ -14,14 +14,30 @@ https://music-app-e50df.firebaseapp.com
 
 i You can manage your secrets at https://github.com/ylli2000/minecraft-jukebox/settings/secrets.
 
-? Set up the workflow to run a build script before every deploy? Yes
+### • Run emulators
 
-? What script should be run before every deploy? pnpm run build
+`firebase emulators:start`
 
-✔ Created workflow file /Users/macuser/.github/workflows/firebase-hosting-pull-request.yml
+### • Deploy
 
-? Set up automatic deployment to your site's live channel when a PR is merged? Yes
+`firebase deploy --only hosting`
 
-? What is the name of the GitHub branch associated with your site's live channel? master
+### • Deploy Preview Channel
 
-✔ Created workflow file /Users/macuser/.github/workflows/firebase-hosting-merge.yml
+`firebase hosting:channel:deploy preview1 --expires 7d`
+
+where preview1 is the id of the channel. You can list all the preview channels with:
+
+`firebase hosting:channel:list`
+
+│ preview1
+
+│ Last Release Time
+
+│ https://music-app-e50df--preview1-u7kmr9tq.web.app
+
+│ Expire Time ...
+
+To delete it, you can run:
+
+`firebase hosting:channel:delete preview1`
