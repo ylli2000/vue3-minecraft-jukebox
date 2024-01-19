@@ -41,3 +41,31 @@ where preview1 is the id of the channel. You can list all the preview channels w
 To delete it, you can run:
 
 `firebase hosting:channel:delete preview1`
+
+### • CICD
+
+`firebase init hosting:github`
+
+? Set up the workflow to run a build script before every deploy? Yes
+
+? What script should be run before every deploy? pnpm i && pnpm build
+
+put the following in the workflow file to enable `pnpm`:
+
+```
+steps:
+    - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v2
+    with:
+        version: 8
+    - run: pnpm i && pnpm build
+    ...
+```
+
+Don't forget to also go to Github:
+
+`Actions -> General -> Workflow permissions`
+
+enable `Read and Write permissions` and Allow Github Actions to create and approbve PRs. and SAVE.
+
+Now, you can create a new branch, and PR to `master` and see the workflow in action on GitHub page.
