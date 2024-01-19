@@ -42,7 +42,6 @@ export default {
       } else {
         this.transition = 'fade'
       }
-      console.log('------>', toName, fromName, this.transition)
     },
     data() {
       return {

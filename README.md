@@ -1,57 +1,27 @@
 # section-9-1-pinia-music-app
 
-This template should help get you started developing with Vue 3 in Vite.
+https://console.firebase.google.com/u/0/project/music-app-e50df/hosting/sites/music-app-e50df
 
-## Recommended IDE Setup
+### Domains
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+https://music-app-e50df.web.app
 
-## Customize configuration
+https://music-app-e50df.firebaseapp.com
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+✔ Created service account github-action-745356239 with Firebase Hosting admin permissions.
 
-## Project Setup
+✔ Uploaded service account JSON to GitHub as secret FIREBASE_SERVICE_ACCOUNT_MUSIC_APP_E50DF.
 
-```sh
-npm install
-```
+i You can manage your secrets at https://github.com/ylli2000/minecraft-jukebox/settings/secrets.
 
-### Compile and Hot-Reload for Development
+? Set up the workflow to run a build script before every deploy? Yes
 
-```sh
-npm run dev
-```
+? What script should be run before every deploy? pnpm run build
 
-### Compile and Minify for Production
+✔ Created workflow file /Users/macuser/.github/workflows/firebase-hosting-pull-request.yml
 
-```sh
-npm run build
-```
+? Set up automatic deployment to your site's live channel when a PR is merged? Yes
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+? What is the name of the GitHub branch associated with your site's live channel? master
 
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+✔ Created workflow file /Users/macuser/.github/workflows/firebase-hosting-merge.yml

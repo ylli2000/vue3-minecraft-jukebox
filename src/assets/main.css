@@ -37,7 +37,7 @@ a:hover {
 }
 
 .introduction-bg {
-  background-image: url(assets/img/170667.jpg);
+  background-image: url(/assets/img/170667.jpg);
   background-size: cover;
   background-repeat: repeat-x;
   animation: slide 200s linear infinite;
