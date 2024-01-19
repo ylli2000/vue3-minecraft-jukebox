@@ -1,0 +1,63 @@
+import { db, auth } from '@/plugins/firebase'
+
+export default {
+  async getCommentsBySongId(songId) {
+    try {
+      console.log('getting comments...')
+      const snapshot = await db
+        .collection('comments')
+        .where('songId', '==', songId)
+        .orderBy('createdAt', 'desc')
+        .get()
+      if (snapshot.metadata.fromCache) {
+        //it indicates an error here:
+        //await get() will not throw any network error
+        //but metadata.fromCache will bet set to true with doc being empty
+        const error = { message: 'metadata is from cache' }
+        console.log('error', error)
+        return { error }
+      }
+      const comments = snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
+      console.log('comments', comments)
+      return { comments }
+    } catch (error) {
+      console.log('error', error)
+      return { error }
+    }
+  },
+  async addComment(values) {
+    try {
+      console.log('adding comment...')
+      const data = {
+        ...values,
+        createdAt: Date.now(),
+        userId: auth.currentUser.uid,
+        userName: auth.currentUser.displayName
+      }
+      const docRef = await db.collection('comments').add(data)
+      const comment = { id: docRef.id, data }
+      console.log('comment', comment)
+      return { comment: comment }
+    } catch (error) {
+      console.log('error', error)
+      return { error }
+    }
+  },
+  async deleteComment(comment) {
+    try {
+      console.log('deleting comment...', comment)
+      if (comment.data.userId !== auth.currentUser.uid) {
+        const error = { message: 'You are not authorized to delete this comment.' }
+        console.log('error', error)
+        return { error }
+      }
+      console.log('deleting comment...')
+      await db.collection('comments').doc(comment.id).delete()
+      console.log('deleted')
+      return { comment }
+    } catch (error) {
+      console.log('error', error)
+      return { error }
+    }
+  }
+}
