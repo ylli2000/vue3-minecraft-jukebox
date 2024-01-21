@@ -2,7 +2,7 @@
   <main>
     <AppHeader />
     <RouterView v-slot="{ Component }">
-      <Transition :name="transition" mode="out-in">
+      <Transition v-if="effect" :name="effect" mode="out-in">
         <component :is="Component" />
       </Transition>
     </RouterView>
@@ -36,16 +36,16 @@ export default {
       const toName = to.name
       const fromName = from.name
       if (fromName === 'home' && (toName === 'manage' || toName === 'song')) {
-        this.transition = 'slide-left'
+        this.effect = 'fade-in'
       } else if ((fromName === 'manage' || fromName === 'song') && toName === 'home') {
-        this.transition = 'slide-right'
+        this.effect = 'slide-right'
       } else {
-        this.transition = 'fade'
+        this.effect = 'fade-in'
       }
     },
     data() {
       return {
-        transition: 'fade'
+        effect: 'fade-in'
       }
     }
   },
@@ -64,6 +64,12 @@ export default {
 .slide-right-enter-active {
   animation: slide-right 0.25s;
 }
+.fade-in-enter-active {
+  animation: fade-in 0.25s;
+}
+.fade-out-enter-active {
+  animation: fade-out 0.25s;
+}
 .fade-enter-active {
   animation: fade 0.25s;
 }
@@ -76,7 +82,14 @@ export default {
   from {
     opacity: 0%;
   }
-
+  to {
+    opacity: 100%;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0%;
+  }
   to {
     opacity: 100%;
   }
@@ -85,7 +98,6 @@ export default {
   from {
     transform: translateX(100%);
   }
-
   to {
     transform: translateX(0%);
   }
@@ -94,7 +106,6 @@ export default {
   from {
     transform: translateX(-100%);
   }
-
   to {
     transform: translateX(0%);
   }

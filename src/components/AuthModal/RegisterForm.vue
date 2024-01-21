@@ -89,7 +89,35 @@
         type="checkbox"
         class="w-4 h-4 float-left -ml-6 mt-1 rounded"
       />
-      <div><label class="inline-block">Accept terms of service</label></div>
+      <div>
+        <label class="inline-block">Accept terms of service</label>
+        <!-- 
+          $t(key.path) and <i18n-t keypath> can both output the text in the current language,
+          in your i18n en.json file, you can do something like this:
+          "register": {
+            "I_accept": "I accept the {0}",
+            "tos": "terms of service"
+          }
+
+          where {0} is the child component, then here you can do:
+          <i18n-t tag="label" class="inline-block" keypath="register.I_accept" >
+            <a href="your_tos_link">$t("register.tos") }}</a>
+          </i18n-t>
+
+          to change locale, simply make a function:
+          changeLocale(locale) {
+            this.$i18n.locale = locale //'en', 'fr', 'zh'...etc
+          }
+          currentLocale() {
+            return this.$i18n.locale //'en', 'fr', 'zh'...etc
+          }
+          then you can do:
+          <ul>
+            <li @click="changeLocale('en')">English</li>
+            ...
+          </ul>
+         -->
+      </div>
       <ErrorMessage class="text-red-600" name="tos" />
     </div>
     <button
