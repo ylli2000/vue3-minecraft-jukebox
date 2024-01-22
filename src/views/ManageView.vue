@@ -1,6 +1,6 @@
 <template>
   <main class="bg">
-    <section class="container min-h-screen mx-auto py-20">
+    <section class="container min-h-[100svh mx-auto py-20">
       <div class="md:grid md:grid-cols-3 md:gap-4 mt-6">
         <div class="col-span-1">
           <SongsUpload @count="uploadsInProgress = $event" />

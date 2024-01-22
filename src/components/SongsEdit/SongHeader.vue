@@ -1,24 +1,24 @@
 <template>
-  <div>
+  <div class="">
     <img
       v-if="song.data.thumb"
       :src="song.data.thumb"
       class="inline-block w-[24px] h-auto mr-2 align-sub"
     />
-    <h4 v-if="song.data.genre" class="inline-block text-lg">{{ song.data.genre }} -&nbsp;</h4>
-    <h4 class="inline-block text-lg font-bold">{{ song.data.name }}</h4>
-    <button
-      class="ml-1 py-1 px-2 text-sm rounded text-white bg-red-600 float-right"
-      @click="deleteSong"
+    <h4
+      class="inline-block align-sub text-sm font-bold w-[calc(100%-100px)] text-nowrap text-ellipsis overflow-hidden"
     >
-      <i class="fa fa-trash"></i>
-    </button>
-    <button
-      class="ml-1 py-1 px-2 text-sm rounded text-white bg-blue-600 float-right"
-      @click="$emit('edit')"
-    >
-      <i class="fa fa-pencil-alt"></i>
-    </button>
+      {{ song.data.genre ? song.data.genre + ' - ' : '' }}
+      {{ song.data.name }}
+    </h4>
+    <div class="float-right inline-block w-[68px]">
+      <button class="ml-1 py-1 px-2 text-sm rounded text-white bg-red-600" @click="deleteSong">
+        <i class="fa fa-trash"></i>
+      </button>
+      <button class="ml-1 py-1 px-2 text-sm rounded text-white bg-blue-600" @click="$emit('edit')">
+        <i class="fa fa-pencil-alt"></i>
+      </button>
+    </div>
   </div>
 </template>
 

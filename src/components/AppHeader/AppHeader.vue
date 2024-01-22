@@ -11,7 +11,7 @@
 
       <div class="flex flex-grow items-center">
         <!-- Primary Navigation -->
-        <ul class="flex flex-row mt-1">
+        <ul class="flex flex-row w-full justify-around sm:justify-end mt-1">
           <!-- Navigation Links -->
           <li class="px-2 text-white">
             <RouterLink to="/about">About ✎</RouterLink>
@@ -25,10 +25,7 @@
           </template>
           <template v-else>
             <li class="px-2 text-white">
-              <RouterLink to="/manage">Manage ✎</RouterLink>
-            </li>
-            <li class="px-2 text-white">
-              <RouterLink to="account">{{ getDisplayName() }} ⌘</RouterLink>
+              <RouterLink to="/manage">Manage ⌘</RouterLink>
             </li>
             <li class="px-2 text-white">
               <a @click.prevent="logout">Logout ⏻</a>
@@ -63,9 +60,6 @@ export default {
         //OR
         //window.location.reload()
       }
-    },
-    getDisplayName() {
-      return this.authStore.displayName?.split(' ')[0]
     }
   }
 }

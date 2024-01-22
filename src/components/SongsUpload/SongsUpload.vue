@@ -1,5 +1,7 @@
 <template>
-  <div class="bg-white bg-opacity-[0.97] rounded border border-gray-200 relative flex flex-col">
+  <div
+    class="bg-white bg-opacity-[0.97] sm:rounded sm:border border-gray-200 relative flex flex-col"
+  >
     <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
       <span class="card-title">Upload</span>
       <UploadButton @selectFiles="uploadFiles" />

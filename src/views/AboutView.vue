@@ -1,6 +1,6 @@
 <template>
   <main class="bg">
-    <section class="container min-h-screen mx-auto py-20">
+    <section class="container min-h-[100svh] mx-auto py-20">
       <div class="bg-white bg-opacity-[0.98] p-6 mt-6">
         <h1 class="inline-block text-3xl font-bold my-6">About the Jukebox</h1>
         <p class="text-lg pb-6">
