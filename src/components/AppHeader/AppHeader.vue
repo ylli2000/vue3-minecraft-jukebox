@@ -1,5 +1,5 @@
 <template>
-  <header id="header" class="fixed bg-gray-700 w-full z-50">
+  <header id="header" class="fixed bg-gray-700 w-full z-40">
     <nav class="container mx-auto flex justify-start items-center py-5 px-4">
       <!-- App Name -->
       <RouterLink
