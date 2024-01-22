@@ -12,7 +12,7 @@
       </div>
 
       <div
-        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all overflow-y-auto w-[94vw] h-[90vh] sm:h-auto sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all overflow-y-auto w-[94vw] h-[90svh] sm:h-auto sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
       >
         <!-- Add margin if you want to see some of the overlay behind the modal-->
         <div class="py-4 text-left px-6">
