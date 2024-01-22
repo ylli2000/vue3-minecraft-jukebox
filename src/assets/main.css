@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-yellow-50 font-sans h-[100vh];
+  @apply bg-yellow-50 font-sans;
 }
 
 a {

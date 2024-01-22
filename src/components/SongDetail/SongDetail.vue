@@ -7,11 +7,11 @@
         >
           <div class="w-full py-[112px] bg-black bg-opacity-20"></div>
         </div>
-        <div class="container pl-20 py-10 flex items-center">
+        <div class="container pl-8 md:pl-20 py-10 flex items-center">
           <!-- Play/Pause Button -->
           <div
             v-if="playerStore.onPageSong"
-            class="z-10 w-[128px] h-[128px] flex justify-center items-center shadow-2xl"
+            class="z-10 w-[64px] h-[64px] sm:w-[80px] sm:h-[80px] md:w-[128px] md:h-[128px] flex justify-center items-center shadow-2xl"
             :style="{
               'background-position': 'center',
               'background-size': 'cover',
@@ -39,8 +39,10 @@
 
           <div v-if="playerStore.onPageSong" class="z-10 text-left ml-8 p-2 shadow-2xl">
             <!-- Song Info -->
-            <div class="text-4xl font-bold shadow-2xl">{{ playerStore.onPageSong.data.name }}</div>
-            <div class="text-xl shadow-2xl">
+            <div class="text-lg md:text-4xl font-bold shadow-2xl">
+              {{ playerStore.onPageSong.data.name }}
+            </div>
+            <div class="text-md md:text-xl shadow-2xl">
               {{ playerStore.onPageSong.data.userName.split(' ')[0] }}
             </div>
           </div>

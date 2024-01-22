@@ -1,6 +1,6 @@
 <template>
   <main class="bg">
-    <section class="container min-h-screen mx-auto py-20">
+    <section class="container mx-auto min-h-[100svh] py-20">
       <div class="bg-white bg-opacity-[0.98] p-6 mt-6">
         <SongDetail />
         <CommentList />
