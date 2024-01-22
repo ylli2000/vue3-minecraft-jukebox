@@ -2,6 +2,14 @@
 
 https://console.firebase.google.com/u/0/project/music-app-e50df/hosting/sites/music-app-e50df
 
+# Firebase Hosting & GitHub Actions Instructions
+
+Watch this Youtube link first:
+
+Getting started with Firebase Hosting (and GitHub Actions!)
+
+https://www.youtube.com/watch?v=P0x0LmiknJc
+
 ### • Domains
 
 https://music-app-e50df.web.app
