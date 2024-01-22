@@ -7,8 +7,15 @@ import { createPinia } from 'pinia'
 import { authProvider } from '@/plugins/firebase'
 import Icon from '@/directives/Icon'
 import App from './App.vue'
+import { registerSW } from 'virtual:pwa-register'
+import progressProvider from '@/plugins/nprogress'
+
+//TODO: workbox configuration in vite.config.js is not caching images as expected
+registerSW({ immediate: true })
 
 let vue
+
+progressProvider(router)
 authProvider(() => {
   if (!vue) {
     vue = createApp(App)

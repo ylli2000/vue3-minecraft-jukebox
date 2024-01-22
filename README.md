@@ -1,4 +1,4 @@
-# section-9-1-pinia-music-app
+# Minecraft Jukebox
 
 https://console.firebase.google.com/u/0/project/music-app-e50df/hosting/sites/music-app-e50df
 
