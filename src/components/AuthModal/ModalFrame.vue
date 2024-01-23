@@ -42,7 +42,17 @@ export default {
   name: 'ModalFrame',
   props: ['title'],
   computed: {
-    ...mapStores(useModalStore)
+    ...mapStores(useModalStore),
+    isOpen() {
+      //use of computed getter
+      return this.modalStore.isOpen
+    }
+  },
+  //use of watch
+  watch: {
+    isOpen(val) {
+      document.body.style.overflow = val ? 'hidden' : 'auto'
+    }
   }
 }
 </script>
