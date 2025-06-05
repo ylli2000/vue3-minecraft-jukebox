@@ -31,12 +31,12 @@
 </template>
 <script>
 import SuspendHandler from '@/components/SuspendHandler/SuspendHandler.vue'
-import SongItem from './SongItem.vue'
 import playlistApi from '@/services/playlistApi'
-import usePlaylistStore from '@/stores/playlistStore'
-import usePlayerStore from '@/stores/playerStore'
 import useManageStore from '@/stores/manageStore'
+import usePlayerStore from '@/stores/playerStore'
+import usePlaylistStore from '@/stores/playlistStore'
 import { mapStores } from 'pinia'
+import SongItem from './SongItem.vue'
 export default {
   name: 'SongPlaylist',
   computed: {
@@ -80,6 +80,22 @@ export default {
     },
     isPlaying(song) {
       return this.playerStore.song && this.playerStore.song.id === song.id
+    },
+    scrollToCurrentSong() {
+      this.$nextTick(() => {
+        const current = this.playerStore.song
+        if (!current) return
+        const el = document.getElementById(`song-${current.id}`)
+        if (!el) return
+        const bar = document.getElementById('playerBar')
+        const barHeight = bar ? bar.offsetHeight : 0
+        const rect = el.getBoundingClientRect()
+        // if bottom of element is hidden behind bar
+        if (rect.bottom > window.innerHeight - barHeight) {
+          const scrollBy = rect.bottom - (window.innerHeight - barHeight)
+          window.scrollBy({ top: scrollBy, behavior: 'smooth' })
+        }
+      })
     }
   },
   data() {
@@ -88,6 +104,11 @@ export default {
       isBottomPrev: false,
       isBottom: false,
       isNoMore: false
+    }
+  },
+  watch: {
+    'playerStore.song'() {
+      this.scrollToCurrentSong()
     }
   },
   components: { SongItem, SuspendHandler }

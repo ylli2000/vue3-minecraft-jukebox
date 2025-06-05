@@ -1,8 +1,8 @@
 <template>
   <div aria-label="player bar">
     <PlayerProvider>
-      <template v-slot:provider="{ togglePlay, updateSeek }">
-        <div class="fixed bottom-0 left-0 bg-white bg-opacity-90 px-4 py-2 w-full">
+      <template v-slot:provider="{ togglePlay, updateSeek, prev, next, prevDisabled, nextDisabled }">
+        <div id="playerBar" class="fixed bottom-0 left-0 bg-white bg-opacity-90 px-4 py-2 w-full">
           <!-- Track Info -->
           <div v-if="playerStore.song" class="text-center">
             <span class="song-title font-bold">
@@ -14,6 +14,14 @@
             </span>
           </div>
           <div class="flex flex-nowrap gap-4 items-center">
+            <!-- Previous Button -->
+            <button class="focus:outline-none" type="button" @click="prev()" :disabled="prevDisabled"
+              :class="{ 'opacity-50 cursor-not-allowed': prevDisabled }">
+              <i
+                class="text-gray-600 text-xl hover:text-green-800 transition duration-300 fa fa-step-backward"
+              ></i>
+            </button>
+
             <!-- Play/Pause Button -->
             <button class="focus:outline-none" type="button" @click="togglePlay()">
               <i
@@ -21,6 +29,15 @@
                 :class="playerStore.status === 'playing' ? 'fa fa-pause' : 'fa fa-play'"
               ></i>
             </button>
+
+            <!-- Next Button -->
+            <button class="focus:outline-none" type="button" @click="next()" :disabled="nextDisabled"
+              :class="{ 'opacity-50 cursor-not-allowed': nextDisabled }">
+              <i
+                class="text-gray-600 text-xl hover:text-green-800 transition duration-300 fa fa-step-forward"
+              ></i>
+            </button>
+
             <!-- Current Position -->
             <div class="player-currenttime text-center w-[60px]">{{ progressFormatted }}</div>
             <!-- Scrub Container  -->
@@ -51,8 +68,8 @@
 </template>
 
 <script>
-import { mmssFormatted, percentFormatted } from '@/helpers/times'
 import PlayerProvider from '@/components/PlayerProvider/PlayerProvider.vue'
+import { mmssFormatted, percentFormatted } from '@/helpers/times'
 import usePlayerStore from '@/stores/playerStore'
 import usePlaylistStore from '@/stores/playlistStore'
 import { mapStores } from 'pinia'

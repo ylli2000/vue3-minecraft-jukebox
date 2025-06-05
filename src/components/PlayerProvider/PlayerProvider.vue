@@ -1,16 +1,34 @@
 <template>
-  <slot name="provider" :togglePlay="togglePlay" :updateSeek="updateSeek"></slot>
+  <slot name="provider"
+        :togglePlay="togglePlay"
+        :updateSeek="updateSeek"
+        :prev="prevSong"
+        :next="nextSong"
+        :prevDisabled="isPrevDisabled"
+        :nextDisabled="isNextDisabled" />
 </template>
 
 <script>
-import { play, stop, isIdle, isPaused, pause, resume, duration, seek } from '@/plugins/howler'
-import usePlaylistStore from '@/stores/playlistStore'
+import { duration, isIdle, isPaused, pause, play, resume, seek, stop } from '@/plugins/howler'
 import usePlayerStore from '@/stores/playerStore'
+import usePlaylistStore from '@/stores/playlistStore'
 import { mapStores } from 'pinia'
 export default {
   name: 'PlayerProvider',
   computed: {
-    ...mapStores(usePlaylistStore, usePlayerStore)
+    ...mapStores(usePlaylistStore, usePlayerStore),
+    isPrevDisabled() {
+      const songs = this.playlistStore.songs || []
+      if (!this.playerStore.song || songs.length === 0) return true
+      const index = songs.findIndex((s) => s.id === this.playerStore.song.id)
+      return index <= 0
+    },
+    isNextDisabled() {
+      const songs = this.playlistStore.songs || []
+      if (!this.playerStore.song || songs.length === 0) return true
+      const index = songs.findIndex((s) => s.id === this.playerStore.song.id)
+      return index === songs.length - 1 || index === -1
+    }
   },
   methods: {
     togglePlay(from = 'playerBar') {
@@ -45,6 +63,24 @@ export default {
       } else {
         alert('no song to play')
       }
+    },
+    prevSong() {
+      if (this.isPrevDisabled) return
+      const songs = this.playlistStore.songs || []
+      const index = songs.findIndex((song) => song.id === this.playerStore.song.id)
+      const newIndex = index - 1
+      stop()
+      this.playerStore.setSong(songs[newIndex])
+      this.togglePlay()
+    },
+    nextSong() {
+      if (this.isNextDisabled) return
+      const songs = this.playlistStore.songs || []
+      const index = songs.findIndex((song) => song.id === this.playerStore.song.id)
+      const newIndex = index + 1
+      stop()
+      this.playerStore.setSong(songs[newIndex])
+      this.togglePlay()
     },
     updateSeek(event) {
       if (this.playerStore.status !== 'playing') return
